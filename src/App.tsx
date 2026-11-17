@@ -296,9 +296,6 @@ export default function App() {
               Join us at Rajmahal on the evening of 19 December for love, laughter, music, and cherished memories.
             </p>
             <p className="names-small">Dr. Ansh &amp; Shagun</p>
-            <p style={{ marginTop: 28, fontSize: 11, letterSpacing: '.08em', color: '#d8a8b2' }}>
-              Music: Krishna Bansuri by Alex Morgan, CC BY 4.0
-            </p>
           </div>
         </section>
       </main>
