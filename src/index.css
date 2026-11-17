@@ -72,10 +72,9 @@ img { max-width: 100%; }
   background-image: radial-gradient(circle at 50% 35%, rgba(200,152,67,.14) 0 1px, transparent 1.5px);
   background-size: 17px 17px; transition: transform 1.05s cubic-bezier(.77,0,.18,1);
 }
-.gate-door::before, .gate-door::after { content: ""; position: absolute; inset: 18px; border: 1px solid rgba(200,152,67,.55); pointer-events: none; }
-.gate-door::after { inset: 27px; border-color: rgba(200,152,67,.25); }
-.gate-left { left: 0; border-right: 1px solid rgba(200,152,67,.8); }
-.gate-right { right: 0; border-left: 1px solid rgba(200,152,67,.8); }
+.gate::after { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(200,152,67,.5); pointer-events: none; z-index: 3; }
+.gate-left { left: 0; }
+.gate-right { right: 0; }
 .gate-card { position: relative; z-index: 2; width: min(86vw, 390px); text-align: center; padding: 48px 22px 42px; transition: opacity .35s ease, transform .6s ease; }
 .gate-card::before { content: ""; position: absolute; inset: 0; border: 1px solid rgba(200,152,67,.6); clip-path: polygon(50% 0, 91% 18%, 100% 100%, 0 100%, 9% 18%); }
 .gate-kicker { margin: 0 0 18px; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--rose); }
@@ -145,14 +144,15 @@ h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(40
 .scroll-cue::after { content: ""; width: 1px; height: 24px; background: var(--gold); animation: pulseLine 1.8s ease-in-out infinite; }
 @keyframes pulseLine { 0%, 100% { transform: scaleY(.45); transform-origin: top; opacity: .4; } 50% { transform: scaleY(1); opacity: 1; } }
 
-/* Countdown */
-.countdown-section { background: var(--rose-deep); color: var(--ivory); text-align: center; }
-.countdown-section .eyebrow { color: var(--gold-pale); }
-.countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; max-width: 610px; margin: 44px auto 0; background: rgba(232,200,138,.32); border: 1px solid rgba(232,200,138,.32); }
-.countdown-cell { padding: 18px 8px; background: var(--rose-deep); }
-.countdown-cell strong { display: block; font-family: var(--serif); font-size: 32px; font-weight: 500; line-height: 1; font-variant-numeric: lining-nums; }
-.countdown-cell span { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-pale); }
-.countdown-label { margin-top: 18px; font-family: var(--serif); font-size: 20px; color: #fbe9ec; }
+/* Countdown, light blush with gold-ringed ivory circles, no dark block */
+.countdown-section { background: var(--blush); color: var(--rose-deep); text-align: center; }
+.countdown-section .eyebrow { color: var(--gold-deep); }
+.countdown { display: flex; justify-content: center; gap: 12px; max-width: 610px; margin: 36px auto 0; }
+.countdown-cell { width: 76px; height: 76px; border-radius: 50%; background: var(--ivory); border: 1px solid rgba(200,152,67,.65); box-shadow: 0 8px 22px rgba(109,33,51,.10); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; }
+.countdown-cell strong { display: block; font-family: var(--serif); font-size: 26px; font-weight: 600; line-height: 1; font-variant-numeric: lining-nums; color: var(--rose-deep); }
+.countdown-cell span { margin-top: 3px; font-size: 8px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-deep); }
+@media (min-width: 640px) { .countdown-cell { width: 92px; height: 92px; } .countdown-cell strong { font-size: 32px; } }
+.countdown-label { margin-top: 22px; font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--rose); }
 
 /* Invitation card, one function only, so no dome or arch shape.
    A clean rectangular ivory card with a double gold border, text in HTML. */

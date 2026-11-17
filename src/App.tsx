@@ -182,6 +182,7 @@ export default function App() {
           <div className="section-inner reveal">
             <p className="eyebrow">Countdown</p>
             <h2>Until we celebrate</h2>
+            <div className="gold-rule"><span /></div>
             <div className="countdown" role="timer" aria-label="Countdown to the reception">
               <div className="countdown-cell"><strong>{days}</strong><span>Days</span></div>
               <div className="countdown-cell"><strong>{hours}</strong><span>Hours</span></div>
