@@ -6,6 +6,6 @@ Reception: Saturday 19 December 2026, 7:30 PM onwards, Rajmahal, Barsat Road, Pa
 
 Stack: React + Vite + TypeScript. Static site, deploys on Vercel.
 
-Artwork: the family's own invitation card is used as-is in `public/invitation-card.jpg` for now. It will be replaced with new artwork later. Do not mirror, crop, or stretch it.
+Artwork: generated for this invite in blush pink + gold, public/invite/ (arch-bg, floral-tl, floral-br, palace). The family's card image was only used to get the content out of it and is NOT shown on the site. Florals are dedicated per corner, never mirrored.
 
 Run locally: `npm install` then `npm run dev`. Build: `npm run build`.

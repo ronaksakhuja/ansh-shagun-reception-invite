@@ -9,6 +9,19 @@ const CALENDAR_URL =
   '&details=Wedding+reception+of+Dr.+Ansh+Ahuja+and+Shagun+Kathuria' +
   '&location=Rajmahal,+Barsat+Road,+Panipat+132103'
 
+const PETALS = [
+  { left: '6%', delay: '0s', dur: '11s', color: '#f4a7b9' },
+  { left: '14%', delay: '3s', dur: '14s', color: '#e8c88a' },
+  { left: '24%', delay: '1.5s', dur: '12s', color: '#f9c5d5' },
+  { left: '36%', delay: '5s', dur: '15s', color: '#f4a7b9' },
+  { left: '48%', delay: '2s', dur: '11s', color: '#e8c88a' },
+  { left: '58%', delay: '6s', dur: '13s', color: '#f9c5d5' },
+  { left: '68%', delay: '0.8s', dur: '12s', color: '#f4a7b9' },
+  { left: '78%', delay: '4s', dur: '14s', color: '#e8c88a' },
+  { left: '88%', delay: '2.5s', dur: '11s', color: '#f9c5d5' },
+  { left: '94%', delay: '7s', dur: '15s', color: '#f4a7b9' },
+]
+
 function useCountdown() {
   const [now, setNow] = useState(() => Date.now())
   useEffect(() => {
@@ -28,6 +41,7 @@ export default function App() {
   const [gateOpen, setGateOpen] = useState(false)
   const [gateHidden, setGateHidden] = useState(false)
   const [musicOn, setMusicOn] = useState(false)
+  const [burst, setBurst] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const { days, hours, mins, secs } = useCountdown()
 
@@ -36,10 +50,29 @@ export default function App() {
     return () => document.body.classList.remove('locked')
   }, [])
 
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll('.reveal'))
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible')
+            obs.unobserve(e.target)
+          }
+        })
+      },
+      { threshold: 0.12 },
+    )
+    els.forEach((el) => obs.observe(el))
+    return () => obs.disconnect()
+  }, [gateOpen])
+
   const openGate = () => {
     setGateOpen(true)
     document.body.classList.remove('locked')
     window.scrollTo(0, 0)
+    setBurst(true)
+    window.setTimeout(() => setBurst(false), 1200)
     setTimeout(() => setGateHidden(true), 1100)
     const a = audioRef.current
     if (a) {
@@ -63,6 +96,26 @@ export default function App() {
     <>
       <audio ref={audioRef} src="/audio/shehnai-loop.mp3" loop preload="none" />
 
+      {burst && (
+        <div className="burst" aria-hidden="true">
+          {Array.from({ length: 26 }).map((_, i) => {
+            const angle = (i / 26) * Math.PI * 2
+            const dist = 90 + (i % 5) * 55
+            return (
+              <span
+                key={i}
+                style={{
+                  background: i % 3 === 0 ? '#e8c88a' : i % 3 === 1 ? '#f4a7b9' : '#f9c5d5',
+                  ['--dx' as string]: `${Math.cos(angle) * dist}px`,
+                  ['--dy' as string]: `${Math.sin(angle) * dist - 60}px`,
+                  ['--rot' as string]: `${(i * 137) % 360}deg`,
+                }}
+              />
+            )
+          })}
+        </div>
+      )}
+
       {!gateHidden && (
         <div className={`gate${gateOpen ? ' open' : ''}`} role="dialog" aria-label="Invitation cover">
           <div className="gate-door gate-left" />
@@ -84,7 +137,7 @@ export default function App() {
       )}
 
       <button
-        className={`music-toggle${musicOn ? '' : ' off'}`}
+        className="music-toggle"
         type="button"
         onClick={toggleMusic}
         aria-label={musicOn ? 'Pause music' : 'Play music'}
@@ -104,30 +157,29 @@ export default function App() {
 
       <main>
         <section className="hero">
+          <div className="petals" aria-hidden="true">
+            {PETALS.map((p, i) => (
+              <span key={i} className="petal" style={{ left: p.left, animationDelay: p.delay, animationDuration: p.dur, background: p.color }} />
+            ))}
+          </div>
+          <img className="floral floral-tl" src="/invite/floral-tl.jpg" alt="" aria-hidden="true" />
+          <img className="floral floral-br" src="/invite/floral-br.jpg" alt="" aria-hidden="true" />
           <div className="hero-content">
             <p className="hero-symbol" aria-hidden="true">ੴ</p>
             <p className="eyebrow">With the heavenly blessings of<br />Smt. Nirmal &amp; Dr. Ram Parkash Ahuja</p>
             <p className="names">
-              <span className="first">Dr. Ansh</span>
+              Dr. Ansh
               <span className="ampersand">&amp;</span>
               Shagun
             </p>
-            <p className="invitation-copy">
-              Neelam &amp; Arun Ahuja request the honour of your presence at the
-              wedding reception of their beloved son, Dr. Ansh, and Shagun,
-              daughter of Anshu &amp; Harsh Kathuria.
-            </p>
-            <p className="invitation-copy">
-              Come be a part of an evening filled with love, laughter, music,
-              and cherished memories. Your presence will make the celebration complete.
-            </p>
-            <p className="venue-lockup">DEC 19 &middot; 7:30 PM onwards &middot; Rajmahal, Panipat</p>
+            <p className="hero-sub">Wedding Reception</p>
+            <p className="venue-lockup">DEC 19 &middot; 7:30 PM onwards<br />Rajmahal, Panipat</p>
           </div>
           <div className="scroll-cue">Scroll</div>
         </section>
 
         <section className="section countdown-section">
-          <div className="section-inner">
+          <div className="section-inner reveal">
             <p className="eyebrow">Countdown</p>
             <h2>Until we celebrate</h2>
             <div className="countdown" role="timer" aria-label="Countdown to the reception">
@@ -140,22 +192,44 @@ export default function App() {
           </div>
         </section>
 
-        <section className="section card-section">
-          <div className="section-inner">
+        <section className="section arch-section">
+          <div className="section-inner reveal">
             <p className="eyebrow">The invitation</p>
             <h2>An evening to remember</h2>
             <div className="gold-rule"><span /></div>
-            <div className="card-frame">
-              <img src="/invitation-card.jpg" alt="Wedding reception invitation for Dr. Ansh Ahuja and Shagun Kathuria, 19 December 2026, Rajmahal, Panipat" />
+            <div className="arch-card">
+              <img className="arch-bg" src="/invite/arch-bg.jpg" alt="" aria-hidden="true" />
+              <div className="arch-content">
+                <p className="arch-symbol" aria-hidden="true">ੴ</p>
+                <p className="arch-blessing">With the heavenly blessings of<br />Smt. Nirmal &amp; Dr. Ram Parkash Ahuja</p>
+                <p className="arch-parents shimmer">NEELAM &amp; ARUN AHUJA</p>
+                <p className="arch-request">Request the honour of your presence at the wedding reception of their beloved son</p>
+                <p className="arch-names">
+                  Dr. Ansh
+                  <span className="ampersand">&amp;</span>
+                  Shagun
+                </p>
+                <p className="arch-daughter">D/O Anshu &amp; Harsh Kathuria</p>
+                <div className="gold-rule"><span /></div>
+                <p className="arch-copy">
+                  Come be a part of an evening filled with love, laughter, music, and cherished memories.
+                </p>
+                <p className="arch-presence">Your presence will make the celebration complete.</p>
+                <div className="arch-when">
+                  <div><h4>Date</h4><p>19th Dec, 2026</p><small>Saturday</small></div>
+                  <div><h4>Time</h4><p>7:30 PM</p><small>Onwards</small></div>
+                  <div><h4>Venue</h4><p>Rajmahal</p><small>Panipat</small></div>
+                </div>
+                <img className="arch-palace" src="/invite/palace.jpg" alt="Gold palace" />
+              </div>
+              <img className="floral floral-tl" src="/invite/floral-tl.jpg" alt="" aria-hidden="true" />
+              <img className="floral floral-br" src="/invite/floral-br.jpg" alt="" aria-hidden="true" />
             </div>
-            <p className="card-note">
-              This is the invitation card the family shared, shown here exactly as they made it.
-            </p>
           </div>
         </section>
 
         <section className="section">
-          <div className="section-inner" style={{ textAlign: 'center' }}>
+          <div className="section-inner reveal" style={{ textAlign: 'center' }}>
             <p className="eyebrow">When &amp; where</p>
             <h2>Reception</h2>
             <div className="gold-rule"><span /></div>
@@ -187,7 +261,7 @@ export default function App() {
         </section>
 
         <section className="section hosts">
-          <div className="section-inner">
+          <div className="section-inner reveal">
             <p className="eyebrow">With love from the families</p>
             <p className="parents">Neelam &amp; Arun Ahuja</p>
             <p>request the honour of your presence at the wedding reception of their beloved son</p>
@@ -211,7 +285,13 @@ export default function App() {
         </section>
 
         <section className="section closing">
-          <div className="section-inner">
+          <div className="petals" aria-hidden="true">
+            {PETALS.slice(0, 6).map((p, i) => (
+              <span key={i} className="petal" style={{ left: p.left, animationDelay: p.delay, animationDuration: p.dur, background: p.color }} />
+            ))}
+          </div>
+          <div className="section-inner reveal">
+            <img className="palace" src="/invite/palace.jpg" alt="Gold palace" />
             <p className="eyebrow">We cannot wait to see you</p>
             <h2>Your presence will make the celebration complete</h2>
             <p className="lede">
