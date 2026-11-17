@@ -197,8 +197,8 @@ h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(40
 .rsvp-list { display: grid; grid-template-columns: 1fr; gap: 8px; max-width: 640px; margin: 28px auto 0; text-align: center; }
 @media (min-width: 640px) { .rsvp-list { grid-template-columns: 1fr 1fr; } }
 .rsvp-list p { margin: 0; font-size: 14px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--rose-deep); }
-.compliments { margin-top: 36px; font-family: var(--serif); font-size: 19px; }
-.compliments strong { display: block; font-family: var(--sans); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 8px; }
+.compliments { margin-top: 64px; font-family: var(--serif); font-size: 19px; }
+.compliments strong { display: block; font-family: var(--sans); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 14px; }
 
 /* Closing */
 .closing { background: var(--rose-deep); color: var(--ivory); text-align: center; }
