@@ -2,12 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 
 const TARGET = new Date('2026-12-19T19:30:00+05:30').getTime()
 const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=Rajmahal+Barsat+Road+Panipat+132103'
-const CALENDAR_URL =
-  'https://calendar.google.com/calendar/render?action=TEMPLATE' +
-  '&text=Reception+of+Dr.+Ansh+%26+Shagun' +
-  '&dates=20261219T140000Z/20261219T180000Z' +
-  '&details=Wedding+reception+of+Dr.+Ansh+Ahuja+and+Shagun+Kathuria' +
-  '&location=Rajmahal,+Barsat+Road,+Panipat+132103'
 
 const PETALS = [
   { left: '6%', delay: '0s', dur: '11s', color: '#f4a7b9' },
@@ -273,7 +267,6 @@ export default function App() {
             </div>
             <div className="button-row" style={{ marginTop: 32 }}>
               <a className="button solid" href={MAPS_URL} target="_blank" rel="noreferrer">Get directions</a>
-              <a className="button" href={CALENDAR_URL} target="_blank" rel="noreferrer">Add to calendar</a>
             </div>
           </div>
         </section>
