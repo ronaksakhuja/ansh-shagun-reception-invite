@@ -94,7 +94,7 @@ export default function App() {
 
   return (
     <>
-      <audio ref={audioRef} src="/audio/shehnai-loop.mp3" loop preload="none" />
+      <audio ref={audioRef} src="/audio/krishna-bansuri.mp3" loop preload="none" />
 
       {burst && (
         <div className="burst" aria-hidden="true">
@@ -162,8 +162,8 @@ export default function App() {
               <span key={i} className="petal" style={{ left: p.left, animationDelay: p.delay, animationDuration: p.dur, background: p.color }} />
             ))}
           </div>
-          <img className="floral floral-tl" src="/invite/floral-tl.jpg" alt="" aria-hidden="true" />
-          <img className="floral floral-br" src="/invite/floral-br.jpg" alt="" aria-hidden="true" />
+          <img className="floral floral-tl" src="/invite/floral-tl.png" alt="" aria-hidden="true" />
+          <img className="floral floral-br" src="/invite/floral-br.png" alt="" aria-hidden="true" />
           <div className="hero-content">
             <p className="hero-symbol" aria-hidden="true">ੴ</p>
             <p className="eyebrow">With the heavenly blessings of<br />Smt. Nirmal &amp; Dr. Ram Parkash Ahuja</p>
@@ -192,14 +192,14 @@ export default function App() {
           </div>
         </section>
 
-        <section className="section arch-section">
+        <section className="section invite-section">
           <div className="section-inner reveal">
             <p className="eyebrow">The invitation</p>
             <h2>An evening to remember</h2>
             <div className="gold-rule"><span /></div>
-            <div className="arch-card">
-              <img className="arch-bg" src="/invite/arch-bg.jpg" alt="" aria-hidden="true" />
-              <div className="arch-content">
+            <div className="invite-card">
+              <img className="floral floral-tl" src="/invite/floral-tl.png" alt="" aria-hidden="true" />
+              <img className="floral floral-br" src="/invite/floral-br.png" alt="" aria-hidden="true" />
                 <p className="arch-symbol" aria-hidden="true">ੴ</p>
                 <p className="arch-blessing">With the heavenly blessings of<br />Smt. Nirmal &amp; Dr. Ram Parkash Ahuja</p>
                 <p className="arch-parents shimmer">NEELAM &amp; ARUN AHUJA</p>
@@ -220,10 +220,7 @@ export default function App() {
                   <div><h4>Time</h4><p>7:30 PM</p><small>Onwards</small></div>
                   <div><h4>Venue</h4><p>Rajmahal</p><small>Panipat</small></div>
                 </div>
-                <img className="arch-palace" src="/invite/palace.jpg" alt="Gold palace" />
-              </div>
-              <img className="floral floral-tl" src="/invite/floral-tl.jpg" alt="" aria-hidden="true" />
-              <img className="floral floral-br" src="/invite/floral-br.jpg" alt="" aria-hidden="true" />
+                <img className="card-palace" src="/invite/palace.png" alt="Gold palace" />
             </div>
           </div>
         </section>
@@ -291,13 +288,16 @@ export default function App() {
             ))}
           </div>
           <div className="section-inner reveal">
-            <img className="palace" src="/invite/palace.jpg" alt="Gold palace" />
+            <img className="palace" src="/invite/palace.png" alt="Gold palace" />
             <p className="eyebrow">We cannot wait to see you</p>
             <h2>Your presence will make the celebration complete</h2>
             <p className="lede">
               Join us at Rajmahal on the evening of 19 December for love, laughter, music, and cherished memories.
             </p>
             <p className="names-small">Dr. Ansh &amp; Shagun</p>
+            <p style={{ marginTop: 28, fontSize: 11, letterSpacing: '.08em', color: '#d8a8b2' }}>
+              Music: Krishna Bansuri by Alex Morgan, CC BY 4.0
+            </p>
           </div>
         </section>
       </main>

@@ -118,8 +118,8 @@ h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(40
 .button.solid { background: var(--rose-deep); border-color: var(--rose-deep); color: var(--ivory); }
 .button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 
-/* Florals, dedicated per corner, never mirrored */
-.floral { position: absolute; width: 190px; height: auto; mix-blend-mode: multiply; pointer-events: none; z-index: 0; transform: none; }
+/* Florals, true transparent PNGs, dedicated per corner, never mirrored */
+.floral { position: absolute; width: 190px; height: auto; pointer-events: none; z-index: 0; transform: none; }
 .floral-tl { top: -14px; left: -14px; }
 .floral-br { bottom: -14px; right: -14px; }
 @media (max-width: 520px) { .floral { width: 150px; } }
@@ -154,30 +154,30 @@ h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(40
 .countdown-cell span { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-pale); }
 .countdown-label { margin-top: 18px; font-family: var(--serif); font-size: 20px; color: #fbe9ec; }
 
-/* Reception arch card, text overlaid in HTML, arch generated in the prompt */
-.arch-section { background: var(--blush); text-align: center; }
-.arch-card { position: relative; width: min(100%, 560px); margin: 36px auto 0; display: grid; }
-.arch-bg { grid-area: 1 / 1; width: 100%; height: auto; display: block; }
-.arch-content {
-  grid-area: 1 / 1; align-self: start; position: relative; z-index: 1;
-  padding: 23% 11% 6%; text-align: center; color: var(--rose-deep);
-}
-.arch-content .arch-symbol { font-size: 30px; color: var(--gold-deep); line-height: 1; margin: 0 0 10px; }
-.arch-blessing { margin: 0; font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; line-height: 1.9; color: var(--rose); }
-.arch-parents { margin: 12px 0 0; font-family: var(--serif); font-size: 24px; font-weight: 600; letter-spacing: .06em; color: var(--gold-deep); }
-.arch-request { margin: 8px auto 0; max-width: 300px; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; line-height: 1.9; color: var(--rose); }
-.arch-names { margin: 14px 0 0; font-family: var(--serif); font-style: italic; font-size: 46px; font-weight: 500; line-height: 1; color: var(--rose-deep); }
-.arch-names .ampersand { display: block; margin: 4px 0; font-family: var(--script); font-size: .6em; font-style: normal; color: var(--gold-deep); transform: rotate(-5deg); }
-.arch-daughter { margin: 10px 0 0; font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--rose); }
-.arch-copy { margin: 14px auto 0; max-width: 320px; font-family: var(--serif); font-style: italic; font-size: 18px; line-height: 1.5; color: var(--rose-deep); }
-.arch-presence { margin: 12px auto 0; max-width: 300px; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; line-height: 1.9; color: var(--rose); }
-.arch-when { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 18px 0 0; padding-top: 14px; border-top: 1px solid rgba(200,152,67,.5); }
-.arch-when h4 { margin: 0 0 4px; font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--rose); }
-.arch-when p { margin: 0; font-family: var(--serif); font-size: 15px; line-height: 1.3; font-weight: 600; }
-.arch-when small { display: block; margin-top: 2px; font-family: var(--sans); font-size: 10px; color: var(--rose-soft); }
-.arch-palace { width: 92%; height: auto; margin: 16px auto 0; display: block; mix-blend-mode: multiply; }
-.arch-card .floral { width: 150px; }
-@media (max-width: 520px) { .arch-card .floral { width: 118px; } .arch-names { font-size: 40px; } .arch-copy { font-size: 16px; } }
+/* Invitation card, one function only, so no dome or arch shape.
+   A clean rectangular ivory card with a double gold border, text in HTML. */
+.invite-section { background: var(--blush); text-align: center; }
+.invite-card { position: relative; width: min(100%, 560px); margin: 36px auto 0; background: var(--ivory); border: 1.5px solid rgba(200,152,67,.7); padding: 52px 26px 30px; box-shadow: 0 18px 50px rgba(109,33,51,.14); }
+.invite-card::before { content: ""; position: absolute; inset: 9px; border: 1px solid rgba(200,152,67,.45); pointer-events: none; }
+.invite-card .floral { width: 160px; }
+.invite-card .floral-tl { top: -34px; left: -34px; }
+.invite-card .floral-br { bottom: -34px; right: -34px; }
+@media (max-width: 520px) { .invite-card .floral { width: 120px; } .invite-card .floral-tl { top: -24px; left: -24px; } .invite-card .floral-br { bottom: -24px; right: -24px; } }
+.invite-card .arch-symbol { font-size: 30px; color: var(--gold-deep); line-height: 1; margin: 0 0 10px; }
+.invite-card .arch-blessing { margin: 0; font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; line-height: 1.9; color: var(--rose); }
+.invite-card .arch-parents { margin: 12px 0 0; font-family: var(--serif); font-size: 24px; font-weight: 600; letter-spacing: .06em; color: var(--gold-deep); }
+.invite-card .arch-request { margin: 8px auto 0; max-width: 300px; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; line-height: 1.9; color: var(--rose); }
+.invite-card .arch-names { margin: 14px 0 0; font-family: var(--serif); font-style: italic; font-size: 46px; font-weight: 500; line-height: 1; color: var(--rose-deep); }
+.invite-card .arch-names .ampersand { display: block; margin: 4px 0; font-family: var(--script); font-size: .6em; font-style: normal; color: var(--gold-deep); transform: rotate(-5deg); }
+.invite-card .arch-daughter { margin: 10px 0 0; font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--rose); }
+.invite-card .arch-copy { margin: 14px auto 0; max-width: 320px; font-family: var(--serif); font-style: italic; font-size: 18px; line-height: 1.5; color: var(--rose-deep); }
+.invite-card .arch-presence { margin: 12px auto 0; max-width: 300px; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; line-height: 1.9; color: var(--rose); }
+.invite-card .arch-when { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 18px 0 0; padding-top: 14px; border-top: 1px solid rgba(200,152,67,.5); }
+.invite-card .arch-when h4 { margin: 0 0 4px; font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--rose); }
+.invite-card .arch-when p { margin: 0; font-family: var(--serif); font-size: 15px; line-height: 1.3; font-weight: 600; }
+.invite-card .arch-when small { display: block; margin-top: 2px; font-family: var(--sans); font-size: 10px; color: var(--rose-soft); }
+.invite-card .card-palace { width: 92%; height: auto; margin: 16px auto 0; display: block; }
+@media (max-width: 520px) { .invite-card .arch-names { font-size: 40px; } .invite-card .arch-copy { font-size: 16px; } }
 
 /* Details */
 .details-grid { display: grid; grid-template-columns: 1fr; gap: 0; max-width: 720px; margin: 40px auto 0; border-top: 1px solid rgba(200,152,67,.5); border-bottom: 1px solid rgba(200,152,67,.5); background: var(--ivory); }
