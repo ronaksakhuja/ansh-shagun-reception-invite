@@ -226,6 +226,26 @@ export default function App() {
           </div>
         </section>
 
+        <section className="section photos-section">
+          <div className="section-inner reveal">
+            <p className="eyebrow">Ansh &amp; Shagun</p>
+            <h2>Some favourite moments</h2>
+            <div className="gold-rule"><span /></div>
+            <figure className="photo-feature">
+              <img src="/photos/photo-3-formal.jpg" alt="Dr. Ansh and Shagun" loading="lazy" />
+            </figure>
+            <div className="photo-strip" role="list">
+              <img role="listitem" src="/photos/photo-1-lakeside.jpg" alt="Ansh and Shagun by the lake" loading="lazy" />
+              <img role="listitem" src="/photos/photo-2-mountain.jpg" alt="Ansh and Shagun in the mountains" loading="lazy" />
+              <img role="listitem" src="/photos/photo-4-lighthouse.jpg" alt="Ansh and Shagun by the lighthouse" loading="lazy" />
+              <img role="listitem" src="/photos/photo-5-hills.jpg" alt="Ansh and Shagun in the hills" loading="lazy" />
+              <img role="listitem" src="/photos/photo-6-coast.jpg" alt="Ansh and Shagun at the coast" loading="lazy" />
+              <img role="listitem" src="/photos/photo-7-festive.jpg" alt="Ansh and Shagun dressed for the evening" loading="lazy" />
+            </div>
+            <p className="photo-hint">Swipe to see more</p>
+          </div>
+        </section>
+
         <section className="section">
           <div className="section-inner reveal" style={{ textAlign: 'center' }}>
             <p className="eyebrow">When &amp; where</p>
